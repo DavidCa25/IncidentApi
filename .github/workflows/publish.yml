@@ -15,6 +15,6 @@ jobs:
 
             - name: Build Docker Image
               run: docker build -t casillas25/711-incidet-api:${{ github.sha }} .
-            
+            ""
             - name: Push Docker Image
               run: docker push casillas25/711-incidet-api:${{ github.sha }}
