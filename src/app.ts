@@ -1,0 +1,22 @@
+import express, { Router } from 'express'
+import { Response, Request } from 'express';
+import { envs } from './config/env';
+import { MongoDatabase } from './data/init';
+import { incidentModel } from './data/models/incindent.models';
+import { AppRoutes } from './presentation/route';
+
+console.log(envs.PORT)
+const app = express();
+app.use(express.json());
+app.use(AppRoutes.routes);
+(async () =>
+    await MongoDatabase.connect({
+        mongoUrl: envs.MONGO_URL,
+        dbname: envs.MONGO_DB
+    }))
+();
+
+app.listen(3000, () =>{
+    console.log("Server running on PORT")
+})
+
